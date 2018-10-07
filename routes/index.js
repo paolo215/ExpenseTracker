@@ -1,19 +1,23 @@
 
 var router = require("express").Router();
-var path = __dirname + "/..";
 
+module.exports = function(path) {
+    var exports = {};
 
-
-router.get("/", function(req, res) {
-    res.status(302);
-    res.sendFile("/index.html", {
-        root: path + "/views"
+    router.get("/", function(req, res) {
+        res.status(302);
+        res.sendFile("/index.html", {
+            root: path + "/views"
+        });
     });
-});
 
 
 
-router.use("/api", require("./api"));
+    router.use("/api", require("./api"));
+
+    exports.router = router;
+
+    return exports;
+}
 
 
-module.exports = router;

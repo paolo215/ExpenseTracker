@@ -7,7 +7,7 @@ var app = express();
 
 var dbHandler = require("./db.js");
 var path = __dirname;
-var routes = require("./routes");
+var routes = require("./routes")(__dirname + "/public");
 
-app.use(routes);
+app.use(routes.router);
 app.listen(10000);
