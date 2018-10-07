@@ -1,0 +1,16 @@
+{
+    "name": "expenseTracker",
+    "version": "0.0.1",
+    "description": "Personal Expense Tracker",
+    "dependencies": {
+        "express": "^4.15.0",
+        "express-session": "1.15.4",
+        "body-parser": "^1.17.2",
+        "mysql": "^2.16.0"
+    },
+    "scripts": {
+        "prestart": "npm install",
+        "start": "node server.js"
+    }
+
+}
