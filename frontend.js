@@ -6,7 +6,8 @@ const CSS = [
 const JS = [
     "angular/angular.min.js",
     "moment/min/moment.min.js",
-    "bootstrap/dist/js/bootstrap.min.js"
+    "bootstrap/dist/js/bootstrap.min.js",
+    "jquery/dist/jquery.min.js"
 
 ];
 
