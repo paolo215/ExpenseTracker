@@ -1,5 +1,11 @@
+
+# JS 
 config.js
 public/*bundle.js
+
+# Folders
 *static/
 node_modules/
+
+
 *.swp
