@@ -25,6 +25,7 @@ module.exports = {
                 // TODO: Add username and account info for personal acocunt usage
                 var expensesTable = "CREATE TABLE IF NOT EXISTS expenses (" +
                     "expenseId INTEGER AUTO_INCREMENT PRIMARY KEY, " +
+                    "title VARCHAR(255) NOT NULL, " +
                     "purchaseDate VARCHAR(12), " +
                     "cost DOUBLE, " +
                     "created VARCHAR(12), " +
