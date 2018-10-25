@@ -5,7 +5,15 @@ app.directive("main", function() {
     return {
         restrict: "E",
         scope: {},
-        controller: [function mainController() {
+        controller: ["$scope", "$http", function mainController($scope, $http) {
+
+            $scope.showForm = false;
+            $scope.dateFormat = "L";
+
+            $scope.submit = function() {
+                // post data
+                // clear form
+            };
 
      }],
     templateUrl: "./templates/main.html"
