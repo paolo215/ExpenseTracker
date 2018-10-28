@@ -2,7 +2,8 @@ var router = require("express").Router();
 
 module.exports = function(path, db) {
     var exports = {};
-    router.use("/", require("./expenses.js"));
+    var expenses = require("./expenses.js")(path, db);
+    router.use("/expenses", expenses.router);
 
 
     exports.router = router;

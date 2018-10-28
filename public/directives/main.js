@@ -13,7 +13,7 @@ app.directive("main", function() {
             $scope.submit = function() {
                 console.log("submitting");
                 // post data
-                $http.post("/api/expenses", $scope.formData)
+                $http.post("/api/expenses/addExpenses", $scope.formData)
                     .then(function(success) {
                     console.log(success);
                 }, function(err) {

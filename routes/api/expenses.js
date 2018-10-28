@@ -13,42 +13,31 @@ module.exports = function(path, db) {
         extended: true,
         limit: 1024
     }));
-    router.get("/", function(req, res) {
-        res.send("hi");
-        res.status(200);
-        res.end();
-    });
 
-
-    router.get("/get", function(req, res) {
-        
+    router.get("/getExpenses", function(req, res) {
+        res.send("get"); 
 
         res.status(200);
         res.end();
 
     });
 
-    router.post("/expenses", function(req, res) {
+    router.post("/addExpenses", function(req, res) {
         var body = req.body;
         var message = "";
         var success = false;
 
         var insert = function() {
-            var date = moment(dateFormat).toString();
-            db.db.run("INSERT INTO expenses (title, purchaseDate, cost, created, " +
+            var date = moment().toString();
+            db.db.query("INSERT INTO expenses (title, purchaseDate, cost, created, " +
                 "updated, comments) " +
-                "VALUES(:title, :purchaseDate, :cost, :created, :updated, :comments)",
-                {
-                    ":title": body.title,
-                    ":purchaseDate": body.purchaseDate,
-                    ":cost": body.cost,
-                    ":created": date,
-                    ":updated": date,
-                    ":comments": body.comments
-                }, function(err) {
+                "VALUES(?, ?, ?, ?, ?, ?)", 
+                [body.title, body.purchaseDate, body.cost, date, date, body.comments],
+                function(err, results, fields) {
                     if(err == null) {
                         success = true;
-
+                    } else {
+                        console.log(err);
                     }
                     res.status(200);
                     res.send({
