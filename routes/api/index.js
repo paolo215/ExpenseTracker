@@ -1,6 +1,12 @@
-const router = require("express").Router();
+var router = require("express").Router();
 
-router.use("/", require("./expenses.js"));
+module.exports = function(path, db) {
+    var exports = {};
+    router.use("/", require("./expenses.js"));
 
 
-module.exports = router;
+    exports.router = router;
+    return exports;
+}   
+
+

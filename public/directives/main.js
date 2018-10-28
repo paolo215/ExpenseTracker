@@ -11,7 +11,14 @@ app.directive("main", function() {
             $scope.dateFormat = "L";
 
             $scope.submit = function() {
+                console.log("submitting");
                 // post data
+                $http.post("/api/expenses", $scope.formData)
+                    .then(function(success) {
+                    console.log(success);
+                }, function(err) {
+
+                });
                 // clear form
             };
 

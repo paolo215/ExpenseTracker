@@ -1,9 +1,8 @@
 
 var router = require("express").Router();
 
-module.exports = function(path) {
+module.exports = function(path, db) {
     var exports = {};
-
     router.get("/", function(req, res) {
         res.status(302);
         res.sendFile("/index.html", {
@@ -12,11 +11,10 @@ module.exports = function(path) {
     });
 
 
-
-    router.use("/api", require("./api"));
+    var api = require("./api")(path, db);
+    router.use("/api", api.router);
 
     exports.router = router;
-
     return exports;
 }
 
