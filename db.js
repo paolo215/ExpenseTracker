@@ -28,8 +28,8 @@ module.exports = {
                     "title VARCHAR(255) NOT NULL, " +
                     "purchaseDate VARCHAR(12), " +
                     "cost DOUBLE, " +
-                    "created VARCHAR(12), " +
-                    "updated VARCHAR(12), " +
+                    "created datetime, " +
+                    "updated datetime, " +
                     "categoryId INTEGER, " +
                     "merchantId INTEGER, " +
                     "comments VARCHAR(255) " + 
@@ -38,8 +38,8 @@ module.exports = {
                 var categoriesTable = "CREATE TABLE IF NOT EXISTS categories (" +
                     "categoryId INTEGER AUTO_INCREMENT PRIMARY KEY, " +
                     "name VARCHAR(255), " + 
-                    "created VARCHAR(12), " + 
-                    "updated VARCHAR(12), " +
+                    "created datetime, " + 
+                    "updated datetime, " +
                     "comments VARCHAR(255) " +
                     ")";
 

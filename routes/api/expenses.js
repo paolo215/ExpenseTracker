@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bodyparser = require("body-parser");
 const moment = require("moment");
-const dateFormat = "MM/DD/YYYY";
+const dateFormat = "YYYY-MM-DD HH:mm:ss";
 
 
 module.exports = function(path, db) {
@@ -28,11 +28,14 @@ module.exports = function(path, db) {
         var success = false;
 
         var insert = function() {
-            var date = moment().toString();
+            var currentDate = moment().format(dateFormat).toString();
+            var purchaseDate = moment(body.date).format(dateFormat).toString();
+            console.log(currentDate);
+
             db.db.query("INSERT INTO expenses (title, purchaseDate, cost, created, " +
                 "updated, comments) " +
                 "VALUES(?, ?, ?, ?, ?, ?)", 
-                [body.title, body.purchaseDate, body.cost, date, date, body.comments],
+                [body.title, body.purchaseDate, body.cost, currentDate, currentDate, body.comments],
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;
