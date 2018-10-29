@@ -9,6 +9,7 @@ app.directive("main", function() {
 
             $scope.showForm = false;
             $scope.dateFormat = "L";
+            $scope.showForm = true;
 
             $scope.submit = function() {
                 console.log("submitting");

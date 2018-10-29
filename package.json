@@ -7,13 +7,21 @@
         "express-session": "1.15.4",
         "body-parser": "^1.17.2",
         "mysql": "^2.16.0",
+
+
+
         "angular": "~1.6.0",
         "bootstrap": "~3.3.7",
         "jquery": "~3.2.1",
         "moment": "~2.18.1",
         "copy-webpack-plugin": "^4.0.1",
         "webpack": "^2.6.1",
-        "path" : "~0.12.7"
+        "path" : "~0.12.7",
+        "angular-animate": "^1.7.2",
+        "angular-aria": "^1.7.2",
+        "angular-messages": "^1.7.2", 
+        "angular-material": "~1.1.4"
+
     },
     "scripts": {
         "prestart": "npm install",

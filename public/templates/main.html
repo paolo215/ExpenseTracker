@@ -1,6 +1,6 @@
 
 <! -- Expense form -->
-<div id="expense-form" class="container" ng-submit="submit()">
+<div id="expense-form" class="container" ng-submit="submit()" ng-show="showForm">
     <form class="form-horizonal">
         <div class="message">
             {{form.message}}
@@ -33,9 +33,7 @@
         <!-- Date -->
         <div class="form-group row">
             <label class="control-label col-sm-6">Date:</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="date" ng-model="formData.date">
-            </div>
+            <md-datepicker ng-model="formData.date"><md-datepicker>
         </div>
 
         <!-- Comment -->
