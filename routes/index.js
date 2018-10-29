@@ -5,7 +5,7 @@ module.exports = function(path, db) {
     var exports = {};
     router.get("/", function(req, res) {
         res.status(302);
-        res.redirect("/");
+        res.redirect("/dashboard");
     });
 
     router.get("/dashboard", function(req, res) {
