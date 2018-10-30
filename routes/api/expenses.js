@@ -31,11 +31,13 @@ module.exports = function(path, db) {
             var currentDate = moment().format(dateFormat).toString();
             var purchaseDate = moment(body.date).format(dateFormat).toString();
             console.log(currentDate);
+            console.log(body);
 
+            // TODO: verify and sanitize user inputs
             db.db.query("INSERT INTO expenses (title, purchaseDate, cost, created, " +
-                "updated, comments) " +
-                "VALUES(?, ?, ?, ?, ?, ?)", 
-                [body.title, body.purchaseDate, body.cost, currentDate, currentDate, body.comments],
+                "updated, comments, categoryId) " +
+                "VALUES(?, ?, ?, ?, ?, ?, ?)", 
+                [body.title, body.purchaseDate, body.cost, currentDate, currentDate, body.comments, body.category.categoryId],
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;
