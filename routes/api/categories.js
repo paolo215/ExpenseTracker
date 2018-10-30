@@ -15,10 +15,24 @@ module.exports = function(path, db) {
     }));
 
     router.get("/getCategories", function(req, res) {
-        res.send("get"); 
+        var message = "";
+        var success = false;
+        db.db.query("SELECT categoryId, name FROM categories",
+            function(err, results, fields) {
+                if(err == null) {
+                    success = true;
+                }
+                console.log(results);
+                res.send({
+                    "message": message,
+                    "success": success,
+                    "data": results
+                });
+                res.status(200);
+                res.end();
+        });
 
-        res.status(200);
-        res.end();
+
 
     });
 

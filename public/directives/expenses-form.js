@@ -8,7 +8,18 @@ app.directive("expensesForm", function() {
         controller: ["$scope", "$http", function mainController($scope, $http) {
 
             $scope.showForm = false;
+            $scope.selected = "";
             $scope.showForm = true;
+            $scope.categories = [];
+            $scope.getCategories = function() {
+                console.log("Get categories");
+                $http.get("/api/categories/getCategories")
+                    .then(function(success) {
+                    $scope.categories = success.data.data;
+                }, function(err) {
+
+                });
+            };
 
             $scope.submit = function() {
                 console.log("submitting");
@@ -22,6 +33,8 @@ app.directive("expensesForm", function() {
                 });
                 // clear form
             };
+
+            $scope.getCategories();
 
      }],
     templateUrl: "./templates/expenses-form.html"
