@@ -13,15 +13,12 @@ app.directive("categoriesForm", function() {
             $scope.submit = function() {
                 console.log("submitting");
                 // post data
-
-                /*
-                $http.post("/api/expenses/addExpenses", $scope.formData)
+                $http.post("/api/categories/addCategory", $scope.formData)
                     .then(function(success) {
                     console.log(success);
                 }, function(err) {
             
                 });
-                */
                 // clear form
             };
 

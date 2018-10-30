@@ -16,6 +16,12 @@ module.exports = function(path, db) {
 
     });
 
+    router.get("/categories", function(req, res) {
+        res.status(302);
+        res.sendFile("/categories.html", {
+            root: path + "/views"
+        });    
+    });
 
     var api = require("./api")(path, db);
     router.use("/api", api.router);
