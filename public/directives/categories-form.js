@@ -1,6 +1,6 @@
 "use strict";
 
-app.directive("categories-form", function() {
+app.directive("categoriesForm", function() {
     console.log("test");
     return {
         restrict: "E",
