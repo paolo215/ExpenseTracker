@@ -1,0 +1,32 @@
+
+<! -- Expense form -->
+<div id="expense-form" class="container" ng-submit="submit()" ng-show="showForm">
+    <form class="form-horizonal">
+        <div class="message">
+            {{form.message}}
+        </div>
+
+        <!-- Title -->
+        <div class="form-group row">
+            <label class="control-label col-sm-4">Category Name</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" ng-model="formData.name">
+            </div>
+        </div>
+
+        <!-- Comment -->
+        <div class="form-group row">
+            <label class="control-label col-sm-6">Comment:</label>
+            <div class="col-sm-4">
+                <textarea class="form-control" rows="5" ng-model="formData.comment"></textarea>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-group row centered">
+            <button class="btn btn-sm" type="submit" value="submit">Submit</button>
+        </div>
+
+    </form>
+    <!-- End Form -->
+</div>

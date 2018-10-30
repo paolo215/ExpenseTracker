@@ -7,14 +7,14 @@ const dateFormat = "YYYY-MM-DD HH:mm:ss";
 module.exports = function(path, db) {
     var exports = {};
 
-    console.log("expenses");
+    console.log("categories");
     router.use(bodyparser.json());
     router.use(bodyparser.urlencoded({
         extended: true,
         limit: 1024
     }));
 
-    router.get("/getExpenses", function(req, res) {
+    router.get("/getCategories", function(req, res) {
         res.send("get"); 
 
         res.status(200);
@@ -22,20 +22,17 @@ module.exports = function(path, db) {
 
     });
 
-    router.post("/addExpense", function(req, res) {
+    router.post("/addCategory", function(req, res) {
         var body = req.body;
         var message = "";
         var success = false;
 
         var insert = function() {
-            var currentDate = moment().format(dateFormat).toString();
-            var purchaseDate = moment(body.date).format(dateFormat).toString();
-            console.log(currentDate);
+            var now = moment().format(dateFormat).toString();
 
-            db.db.query("INSERT INTO expenses (title, purchaseDate, cost, created, " +
-                "updated, comments) " +
-                "VALUES(?, ?, ?, ?, ?, ?)", 
-                [body.title, body.purchaseDate, body.cost, currentDate, currentDate, body.comments],
+            db.db.query("INSERT INTO categories (name, created, updated, comments) " +
+                "VALUES(?, ?, ?, ?)", 
+                [body.name, now, now, body.comment],
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;
@@ -51,7 +48,7 @@ module.exports = function(path, db) {
                 });
         
         }; 
-        console.log("inserting expenses");
+        console.log("inserting category");
         insert();
         
     });

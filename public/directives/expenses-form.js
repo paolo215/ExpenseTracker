@@ -1,6 +1,6 @@
 "use strict";
 
-app.directive("main", function() {
+app.directive("expenses-form", function() {
     console.log("test");
     return {
         restrict: "E",
@@ -14,7 +14,7 @@ app.directive("main", function() {
                 console.log("submitting");
                 // post data
 
-                $http.post("/api/expenses/addExpenses", $scope.formData)
+                $http.post("/api/expenses/addExpense", $scope.formData)
                     .then(function(success) {
                     console.log(success);
                 }, function(err) {
@@ -24,7 +24,7 @@ app.directive("main", function() {
             };
 
      }],
-    templateUrl: "./templates/main.html"
+    templateUrl: "./templates/expenses-form.html"
 
     }
 });
