@@ -5,12 +5,26 @@ app.directive("expensesForm", function() {
     return {
         restrict: "E",
         scope: {},
-        controller: ["$scope", "$http", function mainController($scope, $http) {
+        controller: ["$scope", "$http", function expenseController($scope, $http) {
 
+            var getToday = function() {
+                return moment().format("MM/DD/YYYY").toString();
+            };
+
+            $scope.formData = {};
             $scope.showForm = false;
             $scope.selected = "";
             $scope.showForm = true;
             $scope.categories = [];
+
+            $scope.clearForm = function() {
+                $scope.formData = {};
+                $scope.formData.date = getToday();
+                $scope.formData.message = "";
+                $scope.formData.success = true;
+            };
+
+
             $scope.getCategories = function() {
                 console.log("Get categories");
                 $http.get("/api/categories/getCategories")
@@ -27,14 +41,17 @@ app.directive("expensesForm", function() {
 
                 $http.post("/api/expenses/addExpense", $scope.formData)
                     .then(function(success) {
-                    console.log(success);
+                    $scope.clearForm();
+                    $scope.formData.message = success.data.message;
                 }, function(err) {
             
                 });
                 // clear form
             };
 
+            $scope.clearForm();
             $scope.getCategories();
+            console.log($scope.formData.message);
 
      }],
     templateUrl: "./templates/expenses-form.html"
