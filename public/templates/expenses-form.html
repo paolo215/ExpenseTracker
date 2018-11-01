@@ -10,7 +10,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2">Title</label>
             <div class="col-sm-10">
-                <input class="form-control" type="text" ng-model="formData.title">
+                <input class="form-control" type="text" ng-model="formData.title" required>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2">Category</label>
             <div class="col-sm-10">
-                <select ng-options="item as item.name for item in categories track by item.categoryId" ng-model="formData.category">
+                <select ng-options="item as item.name for item in categories track by item.categoryId" ng-model="formData.category" required>
                 </select>
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2">Cost:</label>
             <div class="col-sm-10">
-                <input class="form-control" type="number" ng-model="formData.cost">
+                <input class="form-control" type="number" ng-model="formData.cost" step="0.01" min="0" value="0.00">
             </div>
         </div>
 
@@ -35,7 +35,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2">Date:</label>
             <div class="col-sm-10">
-                <md-datepicker ng-model="formData.date"><md-datepicker>
+                <md-datepicker ng-model="formData.date" required><md-datepicker>
             </div>
         </div>
 
