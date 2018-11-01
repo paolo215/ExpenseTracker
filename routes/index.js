@@ -16,6 +16,15 @@ module.exports = function(path, db) {
 
     });
 
+
+    router.get("/expenses", function(req, res) {
+        res.status(302);
+        res.sendFile("/expenses.html", {
+            root: path + "/views"
+        });
+
+    });
+
     router.get("/categories", function(req, res) {
         res.status(302);
         res.sendFile("/categories.html", {
