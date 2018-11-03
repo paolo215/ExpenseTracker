@@ -34,7 +34,39 @@ module.exports = function(path, db) {
                     });
                 });
         };
+        get();
+    });
 
+
+    router.get("/getExpensesByDates", function(req, res) {
+        var body = req.body;
+        var message = "";
+        var success = false;
+
+        var get = function() {
+            var start = moment(body.start).format(dateFormat).toString();
+            var end = moment(body.end).format(dateFormat).toString();
+
+            db.db.query("SELECT * FROM expenses WHERE purchasedDate <= ? AND " +
+                " purchasedDate >= ?", [start, end],
+                function(err, results, fields) {
+                    if(err == null) {
+                        success = true;
+                    } else {
+                        console.log(err);
+                    }
+
+                    res.status(200);
+                    res.send({
+                        "message": message,
+                        "success": success,
+                        "data": results
+                    });
+        
+                });
+        };
+
+        get();
     });
 
 
