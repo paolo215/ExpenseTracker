@@ -14,13 +14,29 @@ module.exports = function(path, db) {
         limit: 1024
     }));
 
-    router.get("/getExpenses", function(req, res) {
-        res.send("get"); 
+    router.get("/getAllExpenses", function(req, res) {
+        var success = false;
+        var message = "";
 
-        res.status(200);
-        res.end();
+        var get = function() {
+            db.db.query("SELECT * FROM expenses",
+                function(err, results, fields) {
+                    if(err == null) {
+                        success = true;
+                    } else {
+                        console.log(err);
+                    }
+                    res.status(200);
+                    res.send({
+                        "message": message,
+                        "success": success,
+                        "data": results
+                    });
+                });
+        };
 
     });
+
 
     router.post("/addExpense", function(req, res) {
         var body = req.body;
