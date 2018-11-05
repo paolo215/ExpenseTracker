@@ -24,6 +24,15 @@ app.directive("expenses", function() {
                 $scope.formData.success = true;
             };
 
+            $scope.getAllExpenses = function() {
+                console.log("Get all expenses");
+                $http.get("/api/expenses/getAllExpenses")
+                    .then(function(success) {
+                    console.log(success);
+                }, function(err) {
+
+                });
+            };
 
             $scope.getCategories = function() {
                 console.log("Get categories");
@@ -51,7 +60,7 @@ app.directive("expenses", function() {
 
             $scope.clearForm();
             $scope.getCategories();
-            console.log($scope.formData.message);
+            $scope.getAllExpenses();
 
      }],
     templateUrl: "./templates/expenses.html"

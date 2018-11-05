@@ -16,7 +16,14 @@ app.directive("categories", function() {
             };
 
             $scope.getAllExpenses = function() {
-
+                $http({
+                    url: "/api/expenses/getAllExpenses",
+                    method: "GET"
+                }).then(function(success) {
+                    console.log(success);
+                }, function(err) {
+                    // TODO: error handling
+                });
             };
 
             $scope.submit = function() {
