@@ -5,7 +5,7 @@ app.directive("mainNav", function() {
         restrict: "E",
         scope: {},
         controller: ["$scope", "$http", function mainController($scope, $http) {
-
+            $scope.test = "test";
 
      }],
     templateUrl: "./templates/main-nav.html"

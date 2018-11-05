@@ -19,7 +19,10 @@ module.exports = function(path, db) {
         var message = "";
 
         var get = function() {
-            db.db.query("SELECT * FROM expenses",
+            db.db.query("SELECT e.expenseId, e.title, e.purchased, e.cost, " + 
+                " e.created, e.updated, c.name AS 'category'" +
+                " FROM expenses e LEFT JOIN categories c" + 
+                " ON e.categoryId = c.categoryId ",
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;
@@ -48,7 +51,12 @@ module.exports = function(path, db) {
             var end = query.end;
             console.log(query.start);
             console.log(query.end);
-            db.db.query("SELECT * FROM expenses WHERE purchased >= STR_TO_DATE(?, '%m/%d/%Y') " +  
+            db.db.query("SELECT e.expenseId, e.title, e.purchased, e.cost, " + 
+                " e.created, e.updated, c.name AS 'category'" +
+                " FROM expenses e " + 
+                " INNER JOIN categories c " + 
+                " ON e.categoryId = c.categoryId " + 
+                " WHERE purchased >= STR_TO_DATE(?, '%m/%d/%Y') " +  
                 " AND purchased <= STR_TO_DATE(?, '%m/%d/%Y')", [start, end],
                 function(err, results, fields) {
                     if(err == null) {

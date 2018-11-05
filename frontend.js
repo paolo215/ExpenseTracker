@@ -12,7 +12,8 @@ const JS = [
     "moment/min/moment.min.js",
     "bootstrap/dist/js/bootstrap.min.js",
     "jquery/dist/jquery.min.js",
-    "moment/min/moment.min.js"
+    "moment/min/moment.min.js",
+    "d3/dist/d3.min.js"
 
 ];
 

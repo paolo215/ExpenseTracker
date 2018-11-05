@@ -1,7 +1,6 @@
 "use strict";
 
 app.directive("history", function() {
-    console.log("test");
     return {
         restrict: "E",
         scope: {},
@@ -10,6 +9,7 @@ app.directive("history", function() {
             $scope.formData = {};
             $scope.showForm = false;
             $scope.dateFormat = "MM/DD/YYYY";
+            $scope.data = [];
 
             $scope.clearForm = function() {
                 $scope.formData = {};
@@ -19,9 +19,7 @@ app.directive("history", function() {
                 $scope.formData.end = today.format($scope.dateFormat).toString();
                 $scope.formData.start = today.clone().startOf("month").format($scope.dateFormat).toString();
 
-                console.log($scope.formData.start);
-                console.log($scope.formData.end);
-            };
+            }
 
 
             $scope.getHistory = function() {
@@ -34,6 +32,7 @@ app.directive("history", function() {
                 }).then(function(success) {
                     console.log(success);
                     $scope.clearForm();
+                    $scope.data = success.data.data;
                 }, function(err) {
                     // TODO: error handling
                 });

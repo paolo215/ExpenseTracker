@@ -1,5 +1,17 @@
 
-<div id="history" class="container">
-
-
-</div>
+<table id="history-table" class="container table">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Purchased</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Category</th>
+        </tr>
+    </thead>
+    <tr ng-repeat="expense in data">
+        <td>{{expense.title}}</td>
+        <td>{{expense.purchased}}</td>
+        <td>{{expense.cost}}</td>
+        <td>{{expense.category}}</td>
+    </tr>
+</table>
