@@ -22,7 +22,8 @@ module.exports = function(path, db) {
             db.db.query("SELECT e.expenseId, e.title, e.purchased, e.cost, " + 
                 " e.created, e.updated, c.name AS 'category'" +
                 " FROM expenses e LEFT JOIN categories c" + 
-                " ON e.categoryId = c.categoryId ",
+                " ON e.categoryId = c.categoryId " + 
+                " ORDER BY e.purchased ",
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;
@@ -57,7 +58,8 @@ module.exports = function(path, db) {
                 " INNER JOIN categories c " + 
                 " ON e.categoryId = c.categoryId " + 
                 " WHERE purchased >= STR_TO_DATE(?, '%m/%d/%Y') " +  
-                " AND purchased <= STR_TO_DATE(?, '%m/%d/%Y')", [start, end],
+                " AND purchased <= STR_TO_DATE(?, '%m/%d/%Y')" + 
+                " ORDER BY e.purchased" , [start, end],
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;

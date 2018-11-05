@@ -22,7 +22,7 @@ app.directive("history", function() {
             }
 
 
-            $scope.getHistory = function() {
+            $scope.getExpenses = function() {
                 console.log("Get history");
 
                 $http({
@@ -41,12 +41,12 @@ app.directive("history", function() {
 
             $scope.submit = function() {
                 console.log("submitting");
-                $scope.getHistory();
+                $scope.getExpenses();
 
             };
 
             $scope.clearForm();
-            $scope.getHistory();
+            $scope.getExpenses();
 
      }],
     templateUrl: "./templates/history.html"

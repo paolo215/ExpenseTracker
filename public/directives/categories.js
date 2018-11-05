@@ -1,6 +1,6 @@
 "use strict";
 
-app.directive("categoriesForm", function() {
+app.directive("categories", function() {
     console.log("test");
     return {
         restrict: "E",
@@ -13,6 +13,10 @@ app.directive("categoriesForm", function() {
 
             $scope.clearForm = function() {
                 $scope.formData = {};
+            };
+
+            $scope.getAllExpenses = function() {
+
             };
 
             $scope.submit = function() {
@@ -28,11 +32,11 @@ app.directive("categoriesForm", function() {
                 });
                 // clear form
             };
-
+            
             $scope.clearForm();
 
      }],
-    templateUrl: "./templates/categories-form.html"
+    templateUrl: "./templates/categories.html"
 
     }
 });

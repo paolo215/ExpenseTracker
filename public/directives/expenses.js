@@ -1,6 +1,6 @@
 "use strict";
 
-app.directive("expensesForm", function() {
+app.directive("expenses", function() {
     console.log("test");
     return {
         restrict: "E",
@@ -54,7 +54,7 @@ app.directive("expensesForm", function() {
             console.log($scope.formData.message);
 
      }],
-    templateUrl: "./templates/expenses-form.html"
+    templateUrl: "./templates/expenses.html"
 
     }
 });
