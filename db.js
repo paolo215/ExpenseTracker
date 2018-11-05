@@ -26,7 +26,7 @@ module.exports = {
                 var expensesTable = "CREATE TABLE IF NOT EXISTS expenses (" +
                     "expenseId INTEGER AUTO_INCREMENT PRIMARY KEY, " +
                     "title VARCHAR(255) NOT NULL, " +
-                    "purchaseDate VARCHAR(12), " +
+                    "purchased datetime, " +
                     "cost DOUBLE, " +
                     "created datetime, " +
                     "updated datetime, " +
