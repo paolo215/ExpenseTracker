@@ -39,22 +39,24 @@ module.exports = function(path, db) {
 
 
     router.get("/getExpensesByDates", function(req, res) {
-        var body = req.body;
+        var query = req.query;
         var message = "";
         var success = false;
 
         var get = function() {
-            var start = moment(body.start).format(dateFormat).toString();
-            var end = moment(body.end).format(dateFormat).toString();
-
-            db.db.query("SELECT * FROM expenses WHERE purchasedDate <= ? AND " +
-                " purchasedDate >= ?", [start, end],
+            var start = query.start;
+            var end = query.end;
+            console.log(query.start);
+            console.log(query.end);
+            db.db.query("SELECT * FROM expenses WHERE purchased >= STR_TO_DATE(?, '%m/%d/%Y') " +  
+                " AND purchased <= STR_TO_DATE(?, '%m/%d/%Y')", [start, end],
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;
                     } else {
                         console.log(err);
                     }
+                    console.log(results);
 
                     res.status(200);
                     res.send({

@@ -7,33 +7,37 @@ app.directive("history", function() {
         scope: {},
         controller: ["$scope", "$http", function expenseController($scope, $http) {
 
-            var getToday = function() {
-                return moment().format("MM/DD/YYYY").toString();
-            };
-
             $scope.formData = {};
             $scope.showForm = false;
+            $scope.dateFormat = "MM/DD/YYYY";
 
             $scope.clearForm = function() {
                 $scope.formData = {};
                 $scope.formData.message = "";
                 $scope.formData.success = true;
-                var today = getToday();
-                $scope.formData.end = today;
-                $scope.formData.start = today.clone().startOf("month");
+                var today = moment();
+                $scope.formData.end = today.format($scope.dateFormat).toString();
+                $scope.formData.start = today.clone().startOf("month").format($scope.dateFormat).toString();
+
+                console.log($scope.formData.start);
+                console.log($scope.formData.end);
             };
 
 
             $scope.getHistory = function() {
                 console.log("Get history");
-                $http.get("/api/expenses/getExpensesByDates", $scope.formData)
-                    .then(function(success) {
+
+                $http({
+                    url: "/api/expenses/getExpensesByDates",
+                    method: "GET",
+                    params: $scope.formData
+                }).then(function(success) {
                     console.log(success);
                     $scope.clearForm();
-
                 }, function(err) {
-
+                    // TODO: error handling
                 });
+
             };
 
             $scope.submit = function() {

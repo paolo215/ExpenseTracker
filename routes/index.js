@@ -32,6 +32,14 @@ module.exports = function(path, db) {
         });    
     });
 
+
+    router.get("/history", function(req, res) {
+        res.status(302);
+        res.sendFile("/history.html", {
+            root: path + "/views"
+        });    
+    });
+
     var api = require("./api")(path, db);
     router.use("/api", api.router);
 
