@@ -50,7 +50,7 @@ app.directive("history", function() {
             var height = 500 - margin.top - margin.bottom;
             var parseDate = d3.timeFormat("%m/%d/%y");
         
-            var x = d3.scaleLinear().range([0, width]);
+            var x = d3.scaleTime().range([0, width]);
             var y = d3.scaleLinear().range([height, 0]);
 
             $scope.data = d3.range(5).map(function(d) { return {"cost": d3.randomUniform(1)()}});
@@ -69,12 +69,14 @@ app.directive("history", function() {
                     .append("g")
                     .attr("transform", "translate(" + 50 + "," + 50 + ")");
 
-
+                // x axis
                 svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0, " + height + ")")
-                    .call(d3.axisBottom(x));
+                    .call(d3.axisBottom(x).ticks(10).tickFormat(parseDate))
 
+
+                // y axis
                 svg.append("g")
                     .attr("class", "y axis")
                     .call(d3.axisLeft(y));
