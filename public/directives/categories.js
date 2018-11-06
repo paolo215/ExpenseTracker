@@ -41,6 +41,7 @@ app.directive("categories", function() {
             };
             
             $scope.clearForm();
+            $scope.getAllExpenses();
 
      }],
     templateUrl: "./templates/categories.html"

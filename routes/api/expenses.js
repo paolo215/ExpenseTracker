@@ -19,7 +19,8 @@ module.exports = function(path, db) {
         var message = "";
 
         var get = function() {
-            db.db.query("SELECT e.expenseId, e.title, e.purchased, e.cost, " + 
+            db.db.query("SELECT e.expenseId, e.title, " + 
+                " DATE_FORMAT(e.purchased, '%m/%d/%Y') AS 'purchased' , e.cost, " + 
                 " e.created, e.updated, c.name AS 'category'" +
                 " FROM expenses e LEFT JOIN categories c" + 
                 " ON e.categoryId = c.categoryId " + 
@@ -52,7 +53,9 @@ module.exports = function(path, db) {
             var end = query.end;
             console.log(query.start);
             console.log(query.end);
-            db.db.query("SELECT e.expenseId, e.title, e.purchased, e.cost, " + 
+            db.db.query("SELECT e.expenseId, e.title, " +
+                " DATE_FORMAT(e.purchased, '%m/%d/%Y') AS 'purchased', " + 
+                " e.cost, " + 
                 " e.created, e.updated, c.name AS 'category'" +
                 " FROM expenses e " + 
                 " INNER JOIN categories c " + 
