@@ -1,3 +1,31 @@
+<div id="history-form" class="container" ng-submit="submit()" ng-show="showForm">
+    <form class="form-horizontal">
+        <div class="message">
+            {{formData.message}}
+        </div>
+
+        <!-- start -->
+        <div class="form-group row">
+            <label class="control-label col-sm-2">Start Date:</label>
+            <div class="col-sm-10">
+                <md-datepicker ng-model="formData.start" required></md-datepicker>
+            </div>
+        </div>
+
+        <!-- end -->
+        <div class="form-group row">
+            <label class="control-label col-sm-2">End Date:</label>
+            <div class="col-sm-10">
+                <md-datepicker ng-model="formData.end" required></md-datepicker>
+            </div>
+        </div>
+
+        <div class="form-group row centered">
+            <button class="btn btn-sm" type="submit" value="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
 
 <table id="history-table" class="container table">
     <thead>
@@ -15,3 +43,7 @@
         <td>{{expense.category}}</td>
     </tr>
 </table>
+
+<div style="width: 600px; height: 600px;">
+    <canvas id="chart" style="width:400px; height:400px;"></canvas>
+</div>

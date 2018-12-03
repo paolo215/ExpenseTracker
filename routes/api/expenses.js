@@ -21,8 +21,10 @@ module.exports = function(path, db) {
         var get = function() {
             db.db.query("SELECT e.expenseId, e.title, " + 
                 " DATE_FORMAT(e.purchased, '%m/%d/%Y') AS 'purchased' , e.cost, " + 
-                " e.created, e.updated, c.name AS 'category'" +
-                " FROM expenses e LEFT JOIN categories c" + 
+                " DATE_FORMAT(e.created, '%m/%d/%Y') AS 'created' , " +
+                " DATE_FORMAT(e.updated, '%m/%d/%Y') AS 'updated' , " + 
+                "  c.name AS 'category' " +
+                " FROM expenses e LEFT JOIN categories c " + 
                 " ON e.categoryId = c.categoryId " + 
                 " ORDER BY e.purchased ",
                 function(err, results, fields) {
