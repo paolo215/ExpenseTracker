@@ -14,7 +14,6 @@ app.directive("expenses", function() {
             $scope.formData = {};
             $scope.showForm = false;
             $scope.selected = "";
-            $scope.showForm = true;
             $scope.categories = [];
 
             $scope.clearForm = function() {

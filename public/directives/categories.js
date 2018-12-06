@@ -7,7 +7,7 @@ app.directive("categories", function() {
         scope: {},
         controller: ["$scope", "$http", function mainController($scope, $http) {
 
-            $scope.showForm = true;
+            $scope.showForm = false;
             $scope.formData = {};
             
 

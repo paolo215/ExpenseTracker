@@ -7,7 +7,7 @@ app.directive("history", function() {
         controller: ["$scope", "$http", function expenseController($scope, $http) {
 
             $scope.formData = {};
-            $scope.showForm = true;
+            $scope.showForm = false;
             $scope.dateFormat = "MM/DD/YYYY";
             $scope.data = [];
             var today = moment();
