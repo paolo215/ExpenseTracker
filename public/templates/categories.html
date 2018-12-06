@@ -1,7 +1,8 @@
 
-<! -- Expense form -->
-<div id="expense-form" class="container" ng-submit="submit()" ng-show="showForm">
-    <form class="form-horizonal">
+<! -- Categories form -->
+<div id="categories-form" class="container">
+    <div class="fa fa-plus fa-2x" ng-click="showForm = !showForm"></div>
+    <form class="form-horizonal" ng-show="showForm" ng-submit="submit()">
         <div class="message">
             {{form.message}}
         </div>

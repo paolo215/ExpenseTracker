@@ -1,5 +1,8 @@
-<div id="history-form" class="container" ng-submit="submit()" ng-show="showForm">
-    <form class="form-horizontal">
+
+<div id="history-form" class="container">
+    <div class="fa fa-plus fa-2x" ng-click="showForm = !showForm"></div>
+
+    <form class="form-horizontal" ng-show="showForm" ng-submit="submit()">
         <div class="message">
             {{formData.message}}
         </div>

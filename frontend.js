@@ -2,7 +2,7 @@ const CSS = [
     "bootstrap/dist/css/bootstrap.min.css",
     "bootstrap/dist/css/bootstrap-theme.min.css",
     "angular-material/angular-material.min.css",
-    "font-awesome/css/font-awesome.min.css",
+    "font-awesome/css/font-awesome.css",
     "font-awesome/css/font-awesome.css.map",
 ];
 
@@ -20,11 +20,11 @@ const JS = [
 
 ];
 
-const FONT = [
+const FONTS = [
     "font-awesome/fonts"
 ];
 
 module.exports = {};
 module.exports.js = [...JS];
 module.exports.css = [...CSS];
-module.exports.font = [...FONT];
+module.exports.fonts = [...FONTS];
