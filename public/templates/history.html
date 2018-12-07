@@ -1,6 +1,12 @@
+<div class="fa fa-plus fa-2x" ng-click="showForm = !showForm"></div>
+
+
+<div style="width: 600px; height: 600px;">
+    <canvas id="chart" style="width:400px; height:400px;"></canvas>
+</div>
+
 
 <div id="history-form" class="container">
-    <div class="fa fa-plus fa-2x" ng-click="showForm = !showForm"></div>
 
     <form class="form-horizontal" ng-show="showForm" ng-submit="submit()">
         <div class="message">
@@ -47,6 +53,3 @@
     </tr>
 </table>
 
-<div style="width: 600px; height: 600px;">
-    <canvas id="chart" style="width:400px; height:400px;"></canvas>
-</div>

@@ -27,7 +27,8 @@ app.directive("history", function() {
                 }).then(function(success) {
                     $scope.clearForm();
                     $scope.data = success.data.data;
-                    // createChart();
+                    var data = convertDataToPoints($scope.data);
+                    createChart(data);
                 }, function(err) {
                     // TODO: error handling
                 });
@@ -39,11 +40,46 @@ app.directive("history", function() {
                 $scope.getExpenses();
 
             };
+    
+            var convertDataToPoints = function(data) {
+                var output = {};
+                var dataY = [];
+                var dataX = [];
+                data.forEach(function(x) {
+                    var point = {};
+                    dataY.push(x.cost);
+                    var purchased = moment(x.purchased).format($scope.dateFormat);
+                    dataX.push(purchased);
+                });
+                output["labels"] = dataX;
+                output["datasets"] = {};
+                output["datasets"]["data"] = dataY;
+                return output;
+            };
+
+            var createChart = function(data) {
+                console.log(data);
+                var ctx = document.getElementById("chart").getContext("2d");
+                var chart = new Chart(ctx, {
+                    type: "line",
+                    data: {
+                        labels: [ moment().format($scope.dateFormat), moment("12/08/2018").format($scope.dateFormat)],
+                        datasets: [{
+                            label: "time",
+                            backgroundColor: "transparent",
+                            borderColor: "#0088d4",
+                            data: [50, 100]
+                        }]
+                    }
+                });
+                console.log(chart);
+
+            };
 
             $scope.clearForm();
             $scope.formData.end = today.format($scope.dateFormat).toString();
             $scope.formData.start = today.clone().startOf("month").format($scope.dateFormat).toString();
-            //$scope.formData.start = moment("01/01/2018", $scope.dateFormat).format($scope.dateFormat).toString();
+            $scope.formData.start = moment("01/01/2018", $scope.dateFormat).format($scope.dateFormat).toString();
             $scope.submit();
 
      }],
