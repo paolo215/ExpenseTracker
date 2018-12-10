@@ -40,7 +40,8 @@ module.exports = {
                     "name VARCHAR(255), " + 
                     "created datetime, " + 
                     "updated datetime, " +
-                    "comments VARCHAR(255) " +
+                    "comments VARCHAR(255), " +
+                    "type VARCHAR(255) " +
                     ")";
 
                 db.query(expensesTable, function(err, result) {
@@ -56,6 +57,7 @@ module.exports = {
                     }
                     console.log("Categories table");
                 });
+
             });
         }
 };

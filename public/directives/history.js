@@ -42,7 +42,6 @@ app.directive("history", function() {
             };
     
             var convertDataToPoints = function(data) {
-                var output = {};
                 var dataY = [];
                 var dataX = [];
                 data.forEach(function(x) {
@@ -51,24 +50,20 @@ app.directive("history", function() {
                     var purchased = moment(x.purchased).format($scope.dateFormat);
                     dataX.push(purchased);
                 });
-                output["labels"] = dataX;
-                output["datasets"] = {};
-                output["datasets"]["data"] = dataY;
-                return output;
+                return {"cost": dataY, "updated": dataX}; 
             };
 
             var createChart = function(data) {
-                console.log(data);
                 var ctx = document.getElementById("chart").getContext("2d");
                 var chart = new Chart(ctx, {
                     type: "line",
                     data: {
-                        labels: [ moment().format($scope.dateFormat), moment("12/08/2018").format($scope.dateFormat)],
+                        labels: data.updated,
                         datasets: [{
                             label: "time",
                             backgroundColor: "transparent",
                             borderColor: "#0088d4",
-                            data: [50, 100]
+                            data: data.cost
                         }]
                     }
                 });

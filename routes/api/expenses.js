@@ -23,7 +23,8 @@ module.exports = function(path, db) {
                 " DATE_FORMAT(e.purchased, '%m/%d/%Y') AS 'purchased' , e.cost, " + 
                 " DATE_FORMAT(e.created, '%m/%d/%Y') AS 'created' , " +
                 " DATE_FORMAT(e.updated, '%m/%d/%Y') AS 'updated' , " + 
-                "  c.name AS 'category' " +
+                "  c.name AS 'category' , " +
+                "  c.type AS 'type', " +
                 " FROM expenses e LEFT JOIN categories c " + 
                 " ON e.categoryId = c.categoryId " + 
                 " ORDER BY e.purchased ",
@@ -58,7 +59,10 @@ module.exports = function(path, db) {
             db.db.query("SELECT e.expenseId, e.title, " +
                 " DATE_FORMAT(e.purchased, '%m/%d/%Y') AS 'purchased', " + 
                 " e.cost, " + 
-                " e.created, e.updated, c.name AS 'category'" +
+                " DATE_FORMAT(e.created,'%m/%d/%Y') AS 'created, " +
+                " DATE_FORMAT(e.updated, '%m/%d/%Y') AS 'updated', " + 
+                " c.name AS 'category'" +
+                " c.type AS 'type' " +
                 " FROM expenses e " + 
                 " INNER JOIN categories c " + 
                 " ON e.categoryId = c.categoryId " + 

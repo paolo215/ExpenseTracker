@@ -9,10 +9,12 @@ app.directive("categories", function() {
 
             $scope.showForm = false;
             $scope.formData = {};
+            $scope.types = ["Income", "Expense"];
             
 
             $scope.clearForm = function() {
                 $scope.formData = {};
+                $scope.formData.type = $scope.types[0];
             };
 
             $scope.getAllExpenses = function() {

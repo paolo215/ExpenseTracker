@@ -44,9 +44,9 @@ module.exports = function(path, db) {
         var insert = function() {
             var now = moment().format(dateFormat).toString();
 
-            db.db.query("INSERT INTO categories (name, created, updated, comments) " +
-                "VALUES(?, ?, ?, ?)", 
-                [body.name, now, now, body.comment],
+            db.db.query("INSERT INTO categories (name, created, updated, comments, type) " +
+                "VALUES(?, ?, ?, ?, ?)", 
+                [body.name, now, now, body.comment, body.type],
                 function(err, results, fields) {
                     if(err == null) {
                         success = true;
