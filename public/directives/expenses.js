@@ -25,7 +25,7 @@ app.directive("expenses", function() {
 
             $scope.getAllExpenses = function() {
                 console.log("Get all expenses");
-                $http.get("/api/expenses/getAllExpenses")
+                $http.get("/api/expenses/getAllTransactions")
                     .then(function(success) {
                     console.log(success);
                 }, function(err) {
@@ -47,7 +47,7 @@ app.directive("expenses", function() {
                 console.log("submitting");
                 // post data
 
-                $http.post("/api/expenses/addExpense", $scope.formData)
+                $http.post("/api/expenses/addTransaction", $scope.formData)
                     .then(function(success) {
                     $scope.clearForm();
                     $scope.formData.message = success.data.message;

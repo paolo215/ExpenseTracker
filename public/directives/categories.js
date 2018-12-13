@@ -9,7 +9,9 @@ app.directive("categories", function() {
 
             $scope.showForm = false;
             $scope.formData = {};
+            $scope.selectedCategory = "";
             $scope.types = ["Income", "Expense"];
+            $scope.data = {};
             
 
             $scope.clearForm = function() {
@@ -17,15 +19,45 @@ app.directive("categories", function() {
                 $scope.formData.type = $scope.types[0];
             };
 
-            $scope.getAllExpenses = function() {
+            $scope.getAllTransactionsByCategory = function() {
                 $http({
-                    url: "/api/expenses/getAllExpenses",
-                    method: "GET"
+                    url: "/api/expenses/getTransactionsByCategory",
+                    method: "GET",
+                    params: $scope.selectedCategory
                 }).then(function(success) {
                     console.log(success);
                 }, function(err) {
                     // TODO: error handling
                 });
+            };
+
+            $scope.getAllAndProcessTransactions = function() {
+                $http({
+                    url: "/api/expenses/getAllTransactions",
+                    method: "GET"
+                }).then(function(success) {
+                    var data = success.data.data;
+                    processTransactions(data);
+                }, function(err) {
+                    // TODO: error handling
+                });
+            };
+
+            var processTransactions = function(data) {
+                console.log(data);
+                data = segregateByTypes(data);
+                console.log(data);
+            };
+
+            var segregateByTypes = function(data) {
+                var output = {};
+                data.forEach(function(x) {
+                    if(output.hasOwnProperty(x.type) === false) {
+                        output[x.type] = []; 
+                    }
+                    output[x.type].push(x);
+                });
+                return data;
             };
 
             $scope.submit = function() {
@@ -43,7 +75,7 @@ app.directive("categories", function() {
             };
             
             $scope.clearForm();
-            $scope.getAllExpenses();
+            $scope.getAllAndProcessTransactions();
 
      }],
     templateUrl: "./templates/categories.html"

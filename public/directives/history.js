@@ -21,7 +21,7 @@ app.directive("history", function() {
             $scope.getExpenses = function() {
                 console.log("Get history");
                 $http({
-                    url: "/api/expenses/getExpensesByDates",
+                    url: "/api/expenses/getTransactionsByDates",
                     method: "GET",
                     params: $scope.formData
                 }).then(function(success) {

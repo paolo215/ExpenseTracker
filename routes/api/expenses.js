@@ -14,7 +14,39 @@ module.exports = function(path, db) {
         limit: 1024
     }));
 
-    router.get("/getAllExpenses", function(req, res) {
+    router.get("getAllExpensesByCategory", function(req, res) {
+        var message = "";
+        var success = false;
+        var select = function() { 
+            db.db.query("SELECT e.expenseId, e.title, " +
+            " DATE_FORMAT(e.purchased, '%m/%d/%Y') AS 'purchased', e.cost, " +
+            " DATE_FORMAT(e.created, '%m/%d/%Y') AS 'created', " +
+            " DATE_FORMAT(e.updated, '%m/%d/%Y') As 'updated', " +
+            " c.name AS 'category', " +
+            " c.type AS 'type' " +
+            " FROM expenses e LEFT JOIN categories c " + 
+            " ON e.categoryId = c.categoryId " +
+            " WHERE e.name = ? " + 
+            " ORDER BY e.purchased ",
+            [req.name],
+            function(err, results, fields) {
+                if(err == null) {
+                    success = true;
+                } else {
+                    console.log(err);
+                }
+                res.status(200);
+                res.send({
+                    "message": message,
+                    "success": success
+                });
+                res.end();
+            });
+        };
+        select();
+    });
+
+    router.get("/getAllTransactions", function(req, res) {
         var success = false;
         var message = "";
 
@@ -24,9 +56,9 @@ module.exports = function(path, db) {
                 " DATE_FORMAT(e.created, '%m/%d/%Y') AS 'created' , " +
                 " DATE_FORMAT(e.updated, '%m/%d/%Y') AS 'updated' , " + 
                 "  c.name AS 'category' , " +
-                "  c.type AS 'type', " +
+                "  c.type AS 'type' " +
                 " FROM expenses e LEFT JOIN categories c " + 
-                " ON e.categoryId = c.categoryId " + 
+                " ON e.categoryId = c.categoryId" + 
                 " ORDER BY e.purchased ",
                 function(err, results, fields) {
                     if(err == null) {
@@ -46,7 +78,7 @@ module.exports = function(path, db) {
     });
 
 
-    router.get("/getExpensesByDates", function(req, res) {
+    router.get("/getTransactionsByDates", function(req, res) {
         var query = req.query;
         var message = "";
         var success = false;
@@ -91,7 +123,7 @@ module.exports = function(path, db) {
     });
 
 
-    router.post("/addExpense", function(req, res) {
+    router.post("/addTransaction", function(req, res) {
         var body = req.body;
         var message = "";
         var success = false;
