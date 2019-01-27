@@ -57,7 +57,7 @@ app.directive("categories", function() {
                     }
                     output[x.type].push(x);
                 });
-                return data;
+                return output;
             };
 
             $scope.submit = function() {
