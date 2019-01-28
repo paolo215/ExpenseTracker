@@ -27,6 +27,8 @@ app.directive("history", function() {
                 }).then(function(success) {
                     $scope.clearForm();
                     $scope.data = success.data.data;
+
+                    // chart creation starts here
                     var data = convertDataToPoints($scope.data);
                     createChart(data);
                 }, function(err) {
@@ -42,29 +44,58 @@ app.directive("history", function() {
             };
     
             var convertDataToPoints = function(data) {
+                var expensesByDate = {};
                 var dataY = [];
                 var dataX = [];
                 data.forEach(function(x) {
-                    var point = {};
-                    dataY.push(x.cost);
-                    var purchased = moment(x.purchased).format($scope.dateFormat);
-                    dataX.push(purchased);
+                    if(! expensesByDate.hasOwnProperty(x.purchased)) {
+                        expensesByDate[x.purchased] = x.cost;
+                    } else {
+                        expensesByDate[x.purchased] += x.cost;
+                    }
                 });
+
+                Object.keys(expensesByDate).forEach(function(key) {
+                    dataX.push(moment(key, $scope.dateFormat));
+                    dataY.push(expensesByDate[key]);
+                });
+
+
                 return {"cost": dataY, "updated": dataX}; 
+
             };
 
             var createChart = function(data) {
                 var ctx = document.getElementById("chart").getContext("2d");
                 var chart = new Chart(ctx, {
-                    type: "line",
+                    type: "bar",
                     data: {
                         labels: data.updated,
                         datasets: [{
-                            label: "time",
-                            backgroundColor: "transparent",
+                            label: "Expense",
+                            backgroundColor: "#cccccc",
                             borderColor: "#0088d4",
                             data: data.cost
                         }]
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                type: 'time',
+                                time: {
+                                    unit: 'day',
+                                    displayFormats: {
+                                        day: 'MMM D YYYY'
+                                    },
+                                },
+                                ticks: {
+                                    min: 0,
+                                },
+                                distribution: 'linear'
+                            }],
+                            yAxes: [{
+                            }]
+                        }
                     }
                 });
                 console.log(chart);
